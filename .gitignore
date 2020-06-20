@@ -1,0 +1,5 @@
+# Ignore Jekyll interims
+.jekyll-cache/
+.jekyll-metadata
+_site/
+
