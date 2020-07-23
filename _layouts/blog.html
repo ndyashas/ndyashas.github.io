@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<style>
+  {% if page.bgimage %}
+  
+  #main > header {
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  }
+
+  body.landing #page-wrapper {
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  }
+
+  body.is-mobile.landing #banner,
+  body.is-mobile.landing .wrapper.style4 {
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+  background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ site.baseurl }}/images/{{ page.bgimage }}");
+
+  {% endif %}
+</style>
+
+<body class="is-preload">
+  
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
+    
+    <!-- Main -->
+    <article id="main">
+      <header>
+        <h2>{{ page.title }}</h2>
+
+	{% if page.github %}
+	<ul class="icons">
+          <li><a target="_blank" rel="noopener noreferrer" href="{{ page.github }}" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+	</ul>
+	{% endif %}
+
+      </header>
+      
+      <section class="wrapper style5">
+	<div class="inner">
+	  <section>
+	    
+	    {{ content }}
+
+	  <section>
+	</div>
+      </section>
+    </article>
+</body>

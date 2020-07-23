@@ -1,0 +1,29 @@
+---
+layout: default
+title: Blog
+---
+<body class="is-preload">
+  
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
+    
+    <!-- Main -->
+    <article id="main">
+      <header>
+        <h2>{{ page.title }}</h2>
+      </header>
+      
+      <section id="two" class="wrapper alt style2">
+
+	{% for blog in site.blog %}
+        <section class="spotlight">
+          <div class="image"><img src="{{ site.baseurl }}/images/{{ blog.icimage }}" alt="" /></div><div class="content">
+            <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+            <p>{{ blog.excerpt }}</p>
+          </div>
+        </section>
+	{% endfor %}
+	
+      </section>
+    </article>
+</body>
