@@ -149,6 +149,11 @@ input, select, textarea {
 			border-bottom-color: transparent;
 		}
 
+		a.nouline {
+		    border-bottom: unset;
+		}
+
+		
 	strong, b {
 		color: #fff;
 		font-weight: 600;
