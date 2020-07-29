@@ -39,17 +39,18 @@ layout: default
       <header>
         <h2>{{ page.title }}</h2>
 
-	{% if page.github %}
-	<ul class="icons">
-          <li><a target="_blank" rel="noopener noreferrer" href="{{ page.github }}" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-	</ul>
-	{% endif %}
-
       </header>
       
       <section class="wrapper style5">
 	<div class="inner">
 	  <section>
+
+	    <ul class="icons">
+	      {% if page.github %}
+              <li><a target="_blank" rel="noopener noreferrer" href="{{ page.github }}" class="icon brands fa-github"><span class="label">GitHub</span>GitHub</a></li>
+	      {% endif %}
+	    </ul>
+	    
 	    
 	    {{ content }}
 
