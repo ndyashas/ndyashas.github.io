@@ -47,9 +47,23 @@ layout: default
 
 	    <ul class="icons">
 	      {% if page.github %}
-              <li><a target="_blank" rel="noopener noreferrer" href="{{ page.github }}" class="icon brands fa-github"><span class="label">GitHub</span>GitHub</a></li>
+          <li>
+			<a target="_blank" rel="noopener noreferrer" href="{{ page.github }}" class="icon brands fa-github">
+			  <span class="label"></span>
+			  Github
+			</a>
+		  </li>
 	      {% endif %}
-	    </ul>
+
+		  {% if page.documentation %}
+          <li>
+			<a target="_blank" rel="noopener noreferrer" href="{{ page.documentation }}" class="nouline far fa-file-archive">
+			  <span class="label"></span>
+			  Documentation
+			</a>
+		  </li>
+	      {% endif %}
+		</ul>
 	    
 	    
 	    {{ content }}
