@@ -66,6 +66,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+          my-tools: ${{ github.workspace }}/ndyashas.github.io
 
       - name: make modifications
         run: |
@@ -82,6 +83,7 @@ jobs:
           ls -l
           git status
           git log --oneline
+          ls -l ../
           
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
