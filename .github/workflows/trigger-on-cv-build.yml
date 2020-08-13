@@ -35,16 +35,14 @@ jobs:
           name: CV-repo
           path: ${{ github.workspace }}/CV
           
-      # - name: Install pre-requisites
-      #   run: sudo apt install texlive-latex-extra make
+      - name: Install pre-requisites
+        run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
-        # working-directory: ./CV
-        # shell: bash
         run: |
-          cd CV
-          echo $(pwd)
-          ls -l
+          cd ${{ github.workspace }}/CV
+          make -j4
+          cp CV.pdf ${{ github.workspace }}/
           
       - name: Save the CV.pdf in local store
         uses: actions/upload-artifact@v2
@@ -70,19 +68,22 @@ jobs:
           fetch-depth: 0
 
       - name: make modifications
-        working-directory: ${{ github.workspace }}/ndyashas.github.io
         run: |
+          cd ${{ github.workspace }}/ndyashas.github.io/
           cp ${{ github.workspace }}/CV.pdf static/
 
       - name: Commit files
-        working-directory: ${{ github.workspace }}/ndyashas.github.io
         run: |
+          cd ${{ github.workspace }}/ndyashas.github.io
           git config --local user.email "ndyashas@gmail.com"
           git config --local user.name "Yashas ND - Github Action"
           git add static/CV.pdf
           git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          ls -l
+          git status
+          git log --oneline
+          
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
