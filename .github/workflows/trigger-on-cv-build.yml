@@ -38,8 +38,8 @@ jobs:
       #   run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
-        working-directory: ${{ github.workspace }}/CV
-        shell: bash
+        # working-directory: ${{ github.workspace }}/CV
+        # shell: bash
         run: echo $(pwd)
           
       - name: Save the CV.pdf in local store
