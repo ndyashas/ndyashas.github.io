@@ -76,7 +76,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          my-tools: ${{ github.workspace }}/my-site
+          path: ${{ github.workspace }}/my-site
 
       - name: make modifications
         run: |
