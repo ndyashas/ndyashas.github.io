@@ -33,7 +33,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: CV-repo
-          path: CV
+          path: ${{ github.workspace }}/CV
           
       # - name: Install pre-requisites
       #   run: sudo apt install texlive-latex-extra make
