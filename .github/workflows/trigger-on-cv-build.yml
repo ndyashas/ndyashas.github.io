@@ -34,16 +34,13 @@ jobs:
         with:
           name: CV-repo
           
-      - name: Install pre-requisites
-        run: sudo apt install texlive-latex-extra make
+      # - name: Install pre-requisites
+      #   run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
         working-directory: ${{ github.workspace }}/CV
         run: |
-          # make -j4
           echo $(pwd)
-          # pwd
-          # cp CV.pdf ../
           
       - name: Save the CV.pdf in local store
         uses: actions/upload-artifact@v2
