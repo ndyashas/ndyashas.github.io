@@ -42,6 +42,7 @@ jobs:
         # working-directory: ./CV
         # shell: bash
         run: |
+          cd CV
           echo $(pwd)
           ls -l
           
