@@ -78,12 +78,9 @@ jobs:
           git config --local user.name "Yashas ND - Github Actions"
           git add static/CV.pdf
           git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
-          ls -l
-          git status
-          git log --oneline
-          ls -l ../
           
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: test-1
