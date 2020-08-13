@@ -4,9 +4,6 @@ on:
   repository_dispatch:
     types: [cv_master_commit]
 
-  pull_request:
-
-
 jobs:
   job_1:
     name: Download CV repo
