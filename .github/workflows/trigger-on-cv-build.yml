@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ndyashas/CV
-          path: CV
+          path: ${{ github.workspace }}/CV
           
       - name: Save the CV directory in local store
         uses: actions/upload-artifact@v2
@@ -35,28 +35,19 @@ jobs:
           name: CV-repo
           path: ${{ github.workspace }}/CV
           
-      # - name: Install pre-requisites
-      #   run: sudo apt install texlive-latex-extra make
+      - name: Install pre-requisites
+        run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
         run: |
-          echo "Content" > ${{ github.workspace }}/CV/CV.pdf
-          # cd ${{ github.workspace }}/CV
-          # make -j4
-          # cp CV.pdf ${{ github.workspace }}/
-          
-      # - name: Save the CV.pdf in local store
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: CV
-      #     path: ${{ github.workspace }}/CV.pdf
+          cd ${{ github.workspace }}/CV
+          make -j4
 
       - name: Save the built CV directory in local store
         uses: actions/upload-artifact@v2
         with:
           name: CV-repo
           path: ${{ github.workspace }}/CV
-
       
   job_3:
     name: Make commit to gh-pages
@@ -78,14 +69,13 @@ jobs:
 
       - name: make modifications
         run: |
-          cd ${{ github.workspace }}/ndyashas.github.io/
           cp ${{ github.workspace }}/CV/CV.pdf ${{ github.workspace }}/ndyashas.github.io/static/
 
       - name: Commit files
         run: |
           cd ${{ github.workspace }}/ndyashas.github.io
           git config --local user.email "ndyashas@gmail.com"
-          git config --local user.name "Yashas ND - Github Action"
+          git config --local user.name "Yashas ND - Github Actions"
           git add static/CV.pdf
           git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
           ls -l
