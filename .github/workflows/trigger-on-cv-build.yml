@@ -39,6 +39,7 @@ jobs:
         
       - name: Build CV
         working-directory: ${{ github.workspace }}/CV
+        shell: bash
         run: |
           echo $(pwd)
           
