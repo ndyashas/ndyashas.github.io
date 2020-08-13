@@ -61,42 +61,30 @@ jobs:
         with:
           name: CV
           path: ${{ github.workspace }}/CV.pdf
-
-      - name: before download
-        run: |
-          ls -l #${{ github.workspace }}/ndyashas.github.io/
-          ls -l ../
-          ls -l ${{ github.workspace }}
-          pwd
-          # cp ${{ github.workspace }}/CV.pdf static/
-
           
       - name: Download the current repo
         uses: actions/checkout@v2
         with:
           persist-credentials: false
           fetch-depth: 0
-          path: ${{ github.workspace }}/my-site
+          path: ${{ github.workspace }}/ndyashas.github.io
 
       - name: make modifications
         run: |
-          ls -l #${{ github.workspace }}/ndyashas.github.io/
-          ls -l ../
-          ls -l ${{ github.workspace }}
-          pwd
-          # cp ${{ github.workspace }}/CV.pdf static/
+          cd ${{ github.workspace }}/ndyashas.github.io/
+          cp ${{ github.workspace }}/CV.pdf static/
 
-      # - name: Commit files
-      #   run: |
-      #     cd ${{ github.workspace }}/ndyashas.github.io
-      #     git config --local user.email "ndyashas@gmail.com"
-      #     git config --local user.name "Yashas ND - Github Action"
-      #     git add static/CV.pdf
-      #     git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
-      #     ls -l
-      #     git status
-      #     git log --oneline
-      #     ls -l ../
+      - name: Commit files
+        run: |
+          cd ${{ github.workspace }}/ndyashas.github.io
+          git config --local user.email "ndyashas@gmail.com"
+          git config --local user.name "Yashas ND - Github Action"
+          git add static/CV.pdf
+          git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
+          ls -l
+          git status
+          git log --oneline
+          ls -l ../
           
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
