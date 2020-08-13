@@ -40,28 +40,35 @@ jobs:
         
       - name: Build CV
         run: |
-          echo "Content" > ${{ github.workspace }}/CV.pdf
+          echo "Content" > ${{ github.workspace }}/CV/CV.pdf
           # cd ${{ github.workspace }}/CV
           # make -j4
           # cp CV.pdf ${{ github.workspace }}/
           
-      - name: Save the CV.pdf in local store
+      # - name: Save the CV.pdf in local store
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: CV
+      #     path: ${{ github.workspace }}/CV.pdf
+
+      - name: Save the built CV directory in local store
         uses: actions/upload-artifact@v2
         with:
-          name: CV
-          path: ${{ github.workspace }}/CV.pdf
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
 
+      
   job_3:
     name: Make commit to gh-pages
     needs: [job_1, job_2]
     runs-on: ubuntu-latest
     steps:
-      - name: Recover CV.pdf from local store
+      - name: Recover the built directory from local store
         uses: actions/download-artifact@v2
         with:
-          name: CV
-          path: ${{ github.workspace }}/CV.pdf
-          
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
+
       - name: Download the current repo
         uses: actions/checkout@v2
         with:
@@ -72,7 +79,7 @@ jobs:
       - name: make modifications
         run: |
           cd ${{ github.workspace }}/ndyashas.github.io/
-          cp ${{ github.workspace }}/CV.pdf static/
+          cp ${{ github.workspace }}/CV/CV.pdf ${{ github.workspace }}/ndyashas.github.io/static/
 
       - name: Commit files
         run: |
