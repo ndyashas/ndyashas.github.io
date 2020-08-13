@@ -41,7 +41,8 @@ jobs:
         working-directory: ${{ github.workspace }}/CV
         run: |
           make -j4
-          cp CV.pdf ${{ github.workspace }}/
+          pwd
+          cp CV.pdf ../
           
       - name: Save the CV.pdf in local store
         uses: actions/upload-artifact@v2
@@ -51,7 +52,7 @@ jobs:
 
   job_3:
     name: Make commit to gh-pages
-    needs: job_2
+    needs: [job_1, job_2]
     runs-on: ubuntu-latest
     steps:
       - name: Recover CV.pdf from local store
