@@ -40,7 +40,7 @@ jobs:
       - name: Build CV
         working-directory: ${{ github.workspace }}/CV
         run: |
-          make -j4
+          # make -j4
           echo $(pwd)
           # pwd
           # cp CV.pdf ../
