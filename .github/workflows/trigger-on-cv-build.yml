@@ -33,12 +33,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: CV-repo
+          path: CV
           
       # - name: Install pre-requisites
       #   run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
-        working-directory: ./CV
+        # working-directory: ./CV
         # shell: bash
         run: |
           echo $(pwd)
@@ -59,6 +60,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: CV
+          path: ${{ github.workspace }}/CV.pdf
 
       - name: Download the current repo
         uses: actions/checkout@v2
