@@ -67,6 +67,7 @@ jobs:
           ls -l #${{ github.workspace }}/ndyashas.github.io/
           ls -l ../
           ls -l ${{ github.workspace }}
+          pwd
           # cp ${{ github.workspace }}/CV.pdf static/
 
           
@@ -75,13 +76,14 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          my-tools: ${{ github.workspace }}/ndyashas.github.io
+          my-tools: ${{ github.workspace }}/my-site
 
       - name: make modifications
         run: |
           ls -l #${{ github.workspace }}/ndyashas.github.io/
           ls -l ../
           ls -l ${{ github.workspace }}
+          pwd
           # cp ${{ github.workspace }}/CV.pdf static/
 
       # - name: Commit files
