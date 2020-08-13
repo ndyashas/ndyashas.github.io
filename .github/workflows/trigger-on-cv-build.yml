@@ -5,13 +5,77 @@ on:
     types: [cv_master_commit]
 
 jobs:
-  build:
-    name:
-    
+  job_1:
+    name: Download CV repo
     runs-on: ubuntu-latest
-
     steps:
-    - name: CV trigger
+      - name: Git clone the CV repo
+        uses: actions/checkout@v2
+        with:
+          repository: ndyashas/CV
+          path: CV
+          
+      - name: Save the CV directory in local store
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
 
-      run: |
-        echo "repository_dispatch triggered"
+  job_2:
+    name: Build CV.pdf
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover directory from local store
+        uses: actions/download-artifact@v2
+        with:
+          name: CV-repo
+          
+      - name: Install pre-requisites
+        run: sudo apt install texlive-latex-extra make
+        
+      - name: Build CV
+        working-directory: ${{ github.workspace }}/CV
+        run: |
+          make -j4
+          cp CV.pdf ${{ github.workspace }}/
+          
+      - name: Save the CV.pdf in local store
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV
+          path: ${{ github.workspace }}/CV.pdf
+
+  job_3:
+    name: Make commit to gh-pages
+    needs: job_2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover CV.pdf from local store
+        uses: actions/download-artifact@v2
+        with:
+          name: CV
+
+      - name: Download the current repo
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: make modifications
+        working-directory: ${{ github.workspace }}/ndyashas.github.io
+        run: |
+          cp ${{ github.workspace }}/CV.pdf static/
+
+      - name: Commit files
+        working-directory: ${{ github.workspace }}/ndyashas.github.io
+        run: |
+          git config --local user.email "ndyashas@gmail.com"
+          git config --local user.name "Yashas ND - Github Action"
+          git add static/CV.pdf
+          git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
