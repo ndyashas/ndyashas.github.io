@@ -35,14 +35,15 @@ jobs:
           name: CV-repo
           path: ${{ github.workspace }}/CV
           
-      - name: Install pre-requisites
-        run: sudo apt install texlive-latex-extra make
+      # - name: Install pre-requisites
+      #   run: sudo apt install texlive-latex-extra make
         
       - name: Build CV
         run: |
-          cd ${{ github.workspace }}/CV
-          make -j4
-          cp CV.pdf ${{ github.workspace }}/
+          touch ${{ github.workspace }}/CV.pdf
+          # cd ${{ github.workspace }}/CV
+          # make -j4
+          # cp CV.pdf ${{ github.workspace }}/
           
       - name: Save the CV.pdf in local store
         uses: actions/upload-artifact@v2
@@ -61,6 +62,14 @@ jobs:
           name: CV
           path: ${{ github.workspace }}/CV.pdf
 
+      - name: before download
+        run: |
+          ls -l #${{ github.workspace }}/ndyashas.github.io/
+          ls -l ../
+          ls -l ${{ github.workspace }}
+          # cp ${{ github.workspace }}/CV.pdf static/
+
+          
       - name: Download the current repo
         uses: actions/checkout@v2
         with:
@@ -70,20 +79,22 @@ jobs:
 
       - name: make modifications
         run: |
-          cd ${{ github.workspace }}/ndyashas.github.io/
-          cp ${{ github.workspace }}/CV.pdf static/
-
-      - name: Commit files
-        run: |
-          cd ${{ github.workspace }}/ndyashas.github.io
-          git config --local user.email "ndyashas@gmail.com"
-          git config --local user.name "Yashas ND - Github Action"
-          git add static/CV.pdf
-          git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
-          ls -l
-          git status
-          git log --oneline
+          ls -l #${{ github.workspace }}/ndyashas.github.io/
           ls -l ../
+          ls -l ${{ github.workspace }}
+          # cp ${{ github.workspace }}/CV.pdf static/
+
+      # - name: Commit files
+      #   run: |
+      #     cd ${{ github.workspace }}/ndyashas.github.io
+      #     git config --local user.email "ndyashas@gmail.com"
+      #     git config --local user.name "Yashas ND - Github Action"
+      #     git add static/CV.pdf
+      #     git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
+      #     ls -l
+      #     git status
+      #     git log --oneline
+      #     ls -l ../
           
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
