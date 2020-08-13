@@ -4,14 +4,85 @@ on:
   repository_dispatch:
     types: [cv_master_commit]
 
+  pull_request:
+
+
 jobs:
-  build:
-    name:
-    
+  job_1:
+    name: Download CV repo
     runs-on: ubuntu-latest
-
     steps:
-    - name: CV trigger
+      - name: Git clone the CV repo
+        uses: actions/checkout@v2
+        with:
+          repository: ndyashas/CV
+          path: ${{ github.workspace }}/CV
+          
+      - name: Save the CV directory in local store
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
 
-      run: |
-        echo "repository_dispatch triggered"
+  job_2:
+    name: Build CV.pdf
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover directory from local store
+        uses: actions/download-artifact@v2
+        with:
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
+          
+      - name: Install pre-requisites
+        run: sudo apt install texlive-latex-extra make
+        
+      - name: Build CV
+        run: |
+          cd ${{ github.workspace }}/CV
+          make -j4
+
+      - name: Save the built CV directory in local store
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
+      
+  job_3:
+    name: Make commit to gh-pages
+    needs: [job_1, job_2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover the built directory from local store
+        uses: actions/download-artifact@v2
+        with:
+          name: CV-repo
+          path: ${{ github.workspace }}/CV
+
+      - name: Download the current repo
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          persist-credentials: false
+          fetch-depth: 0
+          path: ${{ github.workspace }}/ndyashas.github.io
+
+      - name: make modifications
+        run: |
+          cp ${{ github.workspace }}/CV/CV.pdf ${{ github.workspace }}/ndyashas.github.io/static/
+
+      - name: Commit files
+        run: |
+          cd ${{ github.workspace }}/ndyashas.github.io
+          git config --local user.email "ndyashas@gmail.com"
+          git config --local user.name "Yashas ND - Github Actions"
+          git add static/CV.pdf
+          git commit -m "Updated CV.pdf based on recent commit at ndyashas/CV"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: ${{ github.workspace }}/ndyashas.github.io
+          branch: master
