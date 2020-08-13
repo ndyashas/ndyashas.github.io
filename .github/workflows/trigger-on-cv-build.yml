@@ -41,8 +41,9 @@ jobs:
         working-directory: ${{ github.workspace }}/CV
         run: |
           make -j4
-          pwd
-          cp CV.pdf ../
+          echo $(pwd)
+          # pwd
+          # cp CV.pdf ../
           
       - name: Save the CV.pdf in local store
         uses: actions/upload-artifact@v2
