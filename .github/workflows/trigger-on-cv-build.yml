@@ -63,6 +63,7 @@ jobs:
       - name: Download the current repo
         uses: actions/checkout@v2
         with:
+          ref: master
           persist-credentials: false
           fetch-depth: 0
           path: ${{ github.workspace }}/ndyashas.github.io
@@ -84,4 +85,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: ${{ github.workspace }}/ndyashas.github.io
-          branch: test-1
+          branch: master
