@@ -83,3 +83,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: ${{ github.workspace }}/ndyashas.github.io
           branch: master
+
+      - name: Clean up temporary artifacts
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: CV-repo
