@@ -17,7 +17,10 @@ title: Projects
 
 	{% for project in site.projects %}
         <section class="spotlight">
-          <div class="image"><img src="{{ site.baseurl }}/images/{{ project.icimage }}" alt="" /></div><div class="content">
+          <div class="image" class="image fit">
+	      <span ><img src="{{ site.baseurl }}/images/{{ project.icimage }}" alt="" /></span>
+	  </div>
+	  <div class="content">
             <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
             <p>{{ project.excerpt }}</p>
           </div>
