@@ -3,30 +3,40 @@ layout: default
 title: Projects
 ---
 <body class="is-preload">
-  
+
   <!-- Page Wrapper -->
   <div id="page-wrapper">
-    
+
     <!-- Main -->
     <article id="main">
       <header>
         <h2>Projects</h2>
       </header>
-      
+
       <section id="two" class="wrapper alt style2">
 
-	{% for project in site.projects %}
+	<!-- Salaga -->
         <section class="spotlight">
           <div class="image" class="image fit">
-	      <span ><img src="{{ site.baseurl }}/images/{{ project.icimage }}" alt="" /></span>
+	      <span ><img src="{{ site.baseurl }}/images/Salaga/banner.png" alt="" /></span>
 	  </div>
 	  <div class="content">
-            <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
-            <p>{{ project.excerpt }}</p>
+            <h2><a href="/projects/Salaga.html">Salaga-RV</a></h2>
+            <p>Family of RISC-V cores with baremetal ray-tracer running on them.</p>
           </div>
         </section>
-	{% endfor %}
-	
+
+	<!-- Dhwani -->
+        <section class="spotlight">
+          <div class="image" class="image fit">
+	      <span ><img src="{{ site.baseurl }}/images/Dhwani/Dhwani-example.png" alt="" /></span>
+	  </div>
+	  <div class="content">
+            <h2><a href="/projects/Dhwani.html">Salaga-RV</a></h2>
+            <p>A simple phonetic converter engine for Indic languages.</p>
+          </div>
+        </section>
+
       </section>
     </article>
 </body>

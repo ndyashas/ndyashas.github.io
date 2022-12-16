@@ -10,14 +10,27 @@ icimage: Salaga/banner.png
 ---
 
 ## Salaga family of RISC-V Cores
-Salaga family of RISC-V processors all support the `rv32i` instruction set. All the programs are written in System Verilog, and are simulated using Verilator.
+Salaga family of RISC-V processors support the `rv32i` instruction set.
 
-The main purpose of me writing these cores is to implement from scratch what was taught to me in the EE-457 course at USC by [Prof. Gandhi Puvvada](https://viterbi.usc.edu/directory/faculty/Puvvada/Gandhi). The different cores are:
+The purpose of this project is to implement what I learnt in USC's EE356, EE457, and EE402 classes by [Prof. Marco Paolieri](https://qed.usc.edu/paolieri/), [Prof. Gandhi Puvvada](https://viterbi.usc.edu/directory/faculty/Puvvada/Gandhi), and [Prof. Bill Cheng](http://merlot.usc.edu/william/usc/) respectivly.
+
+I want to setup a stack where I can run a bare-metal ray-tracer program on my hardware cores. I plan to work on the following cores at the moment:
+
+- **Eka**: Single-cycle design.
+- **Jala**: 5-stage pipelined design.
+
+While the first two designs
+
+All the cores share the same interface as shown below
+<div class="row gtr-50 gtr-uniform">
+     <div class="col-12"><span class="image fit"><img src="/images/Salaga/Salaga-core-interface.jpg" alt="core-interface" /></span></div>
+</div>
+
+
+### Cores:
 
 #### Eka
-*Eka* core is a Single Cycle CPU. Ofcourse, this core is not practical for implementation. However, it is a great way of familiarizing oneself with the instruction set and basic architecture for a 5 stage CPU.
+[*Eka*](https://github.com/ndyashas/Salaga-RV/tree/main/RTL/Eka) core is a Single Cycle CPU. Implementing *Eka* was crucial for me to learn about the RISC-V ISA, as well as a good starting point for implementing *Jala*.
 
-The core interface is as shown below
-<div class="row gtr-50 gtr-uniform">
-     <div class="col-12"><span class="image fit"><img src="/images/Salaga/Eka/core-interface.png" alt="core-interface" /></span></div>
-</div>
+#### Jala
+*Jala* is still a work in progress and will be a 5-stage in-order pipelined CPU.
