@@ -19,8 +19,6 @@ I want to setup a stack where I can run a bare-metal ray-tracer program on my ha
 - **Eka**: Single-cycle design.
 - **Jala**: 5-stage pipelined design.
 
-While the first two designs
-
 All the cores share the same interface as shown below
 <div class="row gtr-50 gtr-uniform">
      <div class="col-12"><span class="image fit"><img src="/images/Salaga/Salaga-core-interface.jpg" alt="core-interface" /></span></div>
