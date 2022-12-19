@@ -28,14 +28,14 @@ All the cores share the same interface as shown below
 ### Cores:
 
 #### Eka
-[*Eka*](https://github.com/ndyashas/Salaga-RV/tree/main/RTL/Eka) core is a Single Cycle CPU. Implementing *Eka* was crucial for me to learn about the RISC-V ISA, as well as a good starting point for implementing *Jala*.
+[*Eka*](https://github.com/ndyashas/Salaga-RV/tree/main/RTL/CORES/Eka) core is a Single Cycle CPU. Implementing *Eka* was crucial for me to learn about the RISC-V ISA, as well as a good starting point for implementing *Jala*.
 
 <div class="row gtr-50 gtr-uniform">
      <div class="col-12"><span class="image fit"><img src="/images/Salaga/Eka-schematic.jpg" alt="core-interface" /></span></div>
 </div>
 
 #### Jala
-[*Jala*](https://github.com/ndyashas/Salaga-RV/tree/main/RTL/Jala) core is a five-staged pipelined CPU. Implementation of *Jala* was significantly eased by the design of *Eka*. Basic skeletal architecuture of the core is based on Hennessy and Patterson design.
+[*Jala*](https://github.com/ndyashas/Salaga-RV/tree/main/RTL/CORES/Jala) core is a five-staged pipelined CPU. Implementation of *Jala* was significantly eased by the design of *Eka*. Basic skeletal architecuture of the core is based on Hennessy and Patterson design.
 
 *Jala* is a late branch design to reuse the same ALU for branch. The core might have a lot of bugs and has not been stress tested - which I plan to do later on in the project.
 
